@@ -8,7 +8,7 @@
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
     body { background-color: #000000; color: #f2f2f2; overflow-x: hidden; }
 
-    /* 1. CINEMATIC 5-SECOND INTRO */
+    /* 1. CINEMATIC 5-SECOND INTRO (UNTOUCHED) */
     #intro-screen {
       position: fixed; inset: 0; background: #000000; z-index: 99999;
       display: flex; flex-direction: column; justify-content: center; align-items: center;
@@ -68,7 +68,7 @@
     }
     .social-link:hover { border-color: #e50914; color: #ff1e27; }
 
-    /* 3. HERO & MASSIVE LIVING LOGO (SEAMLESS NO-BOX) */
+    /* 3. HERO & LIVING LOGO WALLPAPER */
     .hero { text-align: center; padding: 20px 16px 20px; max-width: 600px; margin: 0 auto; }
     .hero-badges { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
     .badge {
@@ -78,33 +78,68 @@
     .main-title { font-size: 26px; font-weight: 900; letter-spacing: 1.5px; text-transform: uppercase; color: #fff; }
     .sub-title { font-size: 18px; color: #e50914; font-weight: 800; margin-top: 4px; letter-spacing: 1px; }
 
-    /* BIG LIVING LOGO - NO SQUARE BOX */
-    .logo-hero-stage {
+    /* LIVE WALLPAPER CONTAINER (NO BOX, NO DRAWN DOTS) */
+    .live-wallpaper-box {
       position: relative;
-      width: 92vw;
+      width: 90vw;
       max-width: 360px;
-      margin: 15px auto 25px;
+      margin: 20px auto 30px;
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
     }
-    .official-logo {
+    .live-photo-stage {
+      position: relative;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: liveWallpaperBreathe 4.5s infinite ease-in-out;
+    }
+    .official-live-photo {
       width: 100%;
       height: auto;
       display: block;
-      position: relative;
-      z-index: 2;
-      mix-blend-mode: screen; /* चौकोर डिब्बा पूरी तरह गायब, सिर्फ़ असली लोगो दिखेगा */
-      filter: drop-shadow(0 0 25px rgba(229,9,20,0.85));
+      /* Removes any square boundary by masking smooth radial fade */
+      -webkit-mask-image: radial-gradient(circle at center, black 64%, rgba(0,0,0,0.85) 78%, transparent 100%);
+      mask-image: radial-gradient(circle at center, black 64%, rgba(0,0,0,0.85) 78%, transparent 100%);
+      filter: drop-shadow(0 0 25px rgba(220, 15, 25, 0.75));
     }
-    #blood-canvas {
+
+    /* REAL LIQUID BLOOD SHEEN SWEEP ACROSS THE TEXTURE */
+    .blood-sheen-sweep {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      inset: 0;
+      background: linear-gradient(115deg, transparent 20%, rgba(255, 30, 40, 0.45) 45%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 30, 40, 0.45) 55%, transparent 80%);
+      mix-blend-mode: color-dodge;
       pointer-events: none;
-      z-index: 3;
+      transform: translateX(-160%) skewX(-25deg);
+      animation: bloodGlint 4s infinite cubic-bezier(0.4, 0, 0.2, 1);
+      -webkit-mask-image: radial-gradient(circle at center, black 64%, transparent 100%);
+      mask-image: radial-gradient(circle at center, black 64%, transparent 100%);
+    }
+
+    @keyframes liveWallpaperBreathe {
+      0% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 20px rgba(180, 0, 10, 0.7)) brightness(1);
+      }
+      50% {
+        transform: scale(1.05);
+        filter: drop-shadow(0 0 40px rgba(255, 20, 30, 0.95)) brightness(1.15) contrast(1.05);
+      }
+      100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 20px rgba(180, 0, 10, 0.7)) brightness(1);
+      }
+    }
+
+    @keyframes bloodGlint {
+      0% { transform: translateX(-160%) skewX(-25deg); opacity: 0; }
+      20% { opacity: 1; }
+      60% { transform: translateX(160%) skewX(-25deg); opacity: 0; }
+      100% { transform: translateX(160%) skewX(-25deg); opacity: 0; }
     }
 
     /* 4. PREMIUM SEPARATE PRIZE POOL CARDS */
@@ -153,7 +188,7 @@
       background: #2a2a2a; color: #777; cursor: not-allowed; box-shadow: none; border: 1px solid #444;
     }
 
-    /* 5. TWO-STEP REGISTRATION MODAL */
+    /* 5. REGISTRATION MODAL */
     .modal-overlay {
       position: fixed; inset: 0; background: rgba(0,0,0,0.88); backdrop-filter: blur(6px);
       z-index: 3000; display: none; align-items: center; justify-content: center; padding: 15px;
@@ -234,7 +269,7 @@
     <p style="font-size:11px; color:#555; margin-top:auto;">HOSTED BY LOS FREAKS</p>
   </div>
 
-  <!-- 3. HERO & MASSIVE LIVING LOGO -->
+  <!-- 3. HERO & LIVING LOGO WALLPAPER -->
   <div class="hero">
     <div class="hero-badges">
       <span class="badge">🔥 100% FREE ENTRY</span>
@@ -245,10 +280,12 @@
     <h1 class="main-title">LOS FREAKS TROPHY</h1>
     <h2 class="sub-title">LFT MAC SEASON 2 (GVG)</h2>
 
-    <!-- MASSIVE LIVING LOGO: BORDERLESS & REAL FLOWING BLOOD -->
-    <div class="logo-hero-stage">
-      <img src="enhanced_9bd1bf70-5157-4723-964d-c5a42cfc75d0-1000026904.png" alt="LOS FREAKS" class="official-logo">
-      <canvas id="blood-canvas"></canvas>
+    <!-- THE LIVE WALLPAPER EMBED OF YOUR ACTUAL PHOTO -->
+    <div class="live-wallpaper-box">
+      <div class="live-photo-stage">
+        <img src="enhanced_9bd1bf70-5157-4723-964d-c5a42cfc75d0-1000026904.png" alt="LOS FREAKS" class="official-live-photo">
+        <div class="blood-sheen-sweep"></div>
+      </div>
     </div>
 
     <!-- Prize Pool Cards -->
@@ -427,82 +464,7 @@
     // 2. Drawer
     function toggleDrawer() { document.getElementById('drawer').classList.toggle('open'); }
 
-    // 3. LIVING BLOOD DRIPPING DIRECTLY ACROSS THE LOGO ART
-    const canvas = document.getElementById('blood-canvas');
-    const ctx = canvas.getContext('2d');
-    let width, height;
-    function resizeCanvas() {
-      width = canvas.width = canvas.parentElement.offsetWidth;
-      height = canvas.height = canvas.parentElement.offsetHeight;
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-
-    // Coordinates directly aligned with the slash cuts & letters of the logo
-    const cutStreams = [
-      { startX: 0.32, startY: 0.22, endY: 0.88, speed: 0.8 },
-      { startX: 0.44, startY: 0.35, endY: 0.95, speed: 1.1 },
-      { startX: 0.52, startY: 0.28, endY: 0.92, speed: 0.9 },
-      { startX: 0.62, startY: 0.42, endY: 0.98, speed: 1.2 },
-      { startX: 0.72, startY: 0.30, endY: 0.85, speed: 0.7 }
-    ];
-
-    class FlowingBlood {
-      constructor(cfg) {
-        this.cfg = cfg;
-        this.reset();
-      }
-      reset() {
-        this.x = width * this.cfg.startX + (Math.random() * 4 - 2);
-        this.y = height * this.cfg.startY;
-        this.limitY = height * this.cfg.endY;
-        this.trail = [];
-        this.speed = this.cfg.speed + Math.random() * 0.4;
-        this.radius = 2.5 + Math.random() * 1.5;
-        this.opacity = 0.95;
-      }
-      update() {
-        this.y += this.speed;
-        this.trail.push({ x: this.x, y: this.y });
-        if(this.trail.length > 25) this.trail.shift();
-        if(this.y >= this.limitY) {
-          this.opacity -= 0.04;
-          if(this.opacity <= 0) this.reset();
-        }
-      }
-      draw() {
-        if(this.trail.length < 2) return;
-        ctx.save();
-        ctx.beginPath();
-        ctx.strokeStyle = `rgba(180, 0, 10, ${this.opacity * 0.85})`;
-        ctx.lineWidth = this.radius * 1.4;
-        ctx.lineCap = 'round';
-        ctx.lineJoin = 'round';
-        for(let i = 0; i < this.trail.length; i++) {
-          const pt = this.trail[i];
-          if(i === 0) ctx.moveTo(pt.x, pt.y);
-          else ctx.lineTo(pt.x, pt.y);
-        }
-        ctx.stroke();
-
-        // Fresh liquid droplet at front
-        ctx.beginPath();
-        ctx.fillStyle = `rgba(230, 15, 25, ${this.opacity})`;
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.restore();
-      }
-    }
-
-    const bloodFlows = cutStreams.map(c => new FlowingBlood(c));
-    function renderBlood() {
-      ctx.clearRect(0, 0, width, height);
-      bloodFlows.forEach(f => { f.update(); f.draw(); });
-      requestAnimationFrame(renderBlood);
-    }
-    renderBlood();
-
-    // 4. SLOT CONTROL
+    // 3. SLOT CONTROL (OPEN / CLOSED SWITCH)
     let isRegOpen = localStorage.getItem('lft_reg_open') !== 'false';
     function refreshRegStateUI() {
       const regBtn = document.getElementById('register-trigger-btn');
@@ -546,7 +508,7 @@
       document.getElementById('step-title').innerText = "STEP 2: SQUAD DETAILS";
     }
 
-    // 5. REGISTRATION SUBMIT & COUNTER
+    // 4. REGISTRATION SUBMIT & COUNTER
     let squads = JSON.parse(localStorage.getItem('lft_squads') || '[]');
     updateSlotUI();
 
@@ -588,7 +550,7 @@
       a.click();
     }
 
-    // 6. HIDDEN ADMIN TRIGGER (TRIPLE TAP OR #admin)
+    // 5. HIDDEN ADMIN TRIGGER (TRIPLE TAP OR #admin)
     let tapCount = 0;
     let tapTimer;
     function handleSecretTap() {
