@@ -6,11 +6,11 @@
   <title>LOS FREAKS TROPHY — LFT MAC SEASON 2 (GVG)</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-    body { background-color: #050505; color: #f2f2f2; overflow-x: hidden; }
+    body { background-color: #000000; color: #f2f2f2; overflow-x: hidden; }
 
     /* 1. CINEMATIC 5-SECOND INTRO */
     #intro-screen {
-      position: fixed; inset: 0; background: #030303; z-index: 99999;
+      position: fixed; inset: 0; background: #000000; z-index: 99999;
       display: flex; flex-direction: column; justify-content: center; align-items: center;
       transition: opacity 0.8s ease, visibility 0.8s ease;
     }
@@ -50,56 +50,61 @@
     /* 2. HEADER & DRAWER */
     header {
       display: flex; justify-content: space-between; align-items: center;
-      padding: 16px 20px; background: rgba(8,8,8,0.95); border-bottom: 1px solid rgba(229,9,20,0.3);
+      padding: 16px 20px; background: rgba(5,5,5,0.95); border-bottom: 1px solid rgba(229,9,20,0.3);
       position: sticky; top: 0; z-index: 100; backdrop-filter: blur(8px);
     }
     .brand-title { font-size: 15px; font-weight: 900; color: #ff1e27; letter-spacing: 1px; }
     .menu-btn { background: none; border: none; color: #fff; font-size: 24px; cursor: pointer; }
     #drawer {
       position: fixed; top: 0; right: -300px; width: 280px; height: 100%;
-      background: #0a0a0a; border-left: 1px solid #e50914; z-index: 2000;
+      background: #080808; border-left: 1px solid #e50914; z-index: 2000;
       transition: right 0.3s ease; padding: 25px 20px; display: flex; flex-direction: column; gap: 16px;
     }
     #drawer.open { right: 0; }
     .drawer-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; padding-bottom: 12px; }
     .social-link {
-      display: block; padding: 12px; background: #141414; border-radius: 6px;
-      color: #eee; text-decoration: none; border: 1px solid #252525; font-weight: bold; font-size: 13px;
+      display: block; padding: 12px; background: #121212; border-radius: 6px;
+      color: #eee; text-decoration: none; border: 1px solid #222; font-weight: bold; font-size: 13px;
     }
     .social-link:hover { border-color: #e50914; color: #ff1e27; }
 
-    /* 3. HERO & LIVING LOGO STAGE */
-    .hero { text-align: center; padding: 25px 16px 20px; max-width: 600px; margin: 0 auto; }
-    .hero-badges { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 15px; }
+    /* 3. HERO & MASSIVE LIVING LOGO (SEAMLESS NO-BOX) */
+    .hero { text-align: center; padding: 20px 16px 20px; max-width: 600px; margin: 0 auto; }
+    .hero-badges { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
     .badge {
       background: rgba(229,9,20,0.15); border: 1px solid #e50914; color: #ff3b44;
       padding: 4px 10px; font-size: 11px; font-weight: bold; border-radius: 4px;
     }
-    .main-title { font-size: 25px; font-weight: 900; letter-spacing: 1.5px; text-transform: uppercase; color: #fff; }
-    .sub-title { font-size: 17px; color: #e50914; font-weight: 800; margin-top: 4px; letter-spacing: 1px; }
+    .main-title { font-size: 26px; font-weight: 900; letter-spacing: 1.5px; text-transform: uppercase; color: #fff; }
+    .sub-title { font-size: 18px; color: #e50914; font-weight: 800; margin-top: 4px; letter-spacing: 1px; }
 
-    .logo-stage {
-      position: relative; width: 230px; height: 230px; margin: 25px auto 40px;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .logo-halo {
-      position: absolute; inset: -15px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(200,0,10,0.35) 0%, rgba(0,0,0,0) 72%);
-      animation: bloodPulse 3s infinite alternate ease-in-out;
+    /* BIG LIVING LOGO - NO SQUARE BOX */
+    .logo-hero-stage {
+      position: relative;
+      width: 92vw;
+      max-width: 360px;
+      margin: 15px auto 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .official-logo {
-      width: 100%; height: 100%; object-fit: contain; position: relative; z-index: 2;
-      filter: drop-shadow(0 0 20px rgba(180,0,10,0.8));
-      animation: wetSheen 4s infinite ease-in-out;
+      width: 100%;
+      height: auto;
+      display: block;
+      position: relative;
+      z-index: 2;
+      mix-blend-mode: screen; /* चौकोर डिब्बा पूरी तरह गायब, सिर्फ़ असली लोगो दिखेगा */
+      filter: drop-shadow(0 0 25px rgba(229,9,20,0.85));
     }
     #blood-canvas {
-      position: absolute; top: 0; left: 0; width: 100%; height: 300px;
-      pointer-events: none; z-index: 3;
-    }
-    @keyframes bloodPulse { 0% { opacity: 0.35; transform: scale(0.96); } 100% { opacity: 0.85; transform: scale(1.08); } }
-    @keyframes wetSheen {
-      0%, 100% { filter: drop-shadow(0 0 20px rgba(180,0,10,0.8)) brightness(1); }
-      50% { filter: drop-shadow(0 0 30px rgba(240,10,20,1)) brightness(1.08); }
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 3;
     }
 
     /* 4. PREMIUM SEPARATE PRIZE POOL CARDS */
@@ -229,7 +234,7 @@
     <p style="font-size:11px; color:#555; margin-top:auto;">HOSTED BY LOS FREAKS</p>
   </div>
 
-  <!-- 3. HERO & LIVING LOGO STAGE -->
+  <!-- 3. HERO & MASSIVE LIVING LOGO -->
   <div class="hero">
     <div class="hero-badges">
       <span class="badge">🔥 100% FREE ENTRY</span>
@@ -240,14 +245,13 @@
     <h1 class="main-title">LOS FREAKS TROPHY</h1>
     <h2 class="sub-title">LFT MAC SEASON 2 (GVG)</h2>
 
-    <!-- Official Logo with Living Blood Drips from Logo Points -->
-    <div class="logo-stage">
-      <div class="logo-halo"></div>
+    <!-- MASSIVE LIVING LOGO: BORDERLESS & REAL FLOWING BLOOD -->
+    <div class="logo-hero-stage">
       <img src="enhanced_9bd1bf70-5157-4723-964d-c5a42cfc75d0-1000026904.png" alt="LOS FREAKS" class="official-logo">
       <canvas id="blood-canvas"></canvas>
     </div>
 
-    <!-- Separate Prize Pool Panels -->
+    <!-- Prize Pool Cards -->
     <div class="prize-headline">TOTAL PRIZE POOL: ₹3,000</div>
     <div class="prize-stack">
       <div class="prize-panel panel-gold">
@@ -423,101 +427,82 @@
     // 2. Drawer
     function toggleDrawer() { document.getElementById('drawer').classList.toggle('open'); }
 
-    // 3. LIVING BLOOD DRIPS FROM LOGO'S EXACT DRIP LOCATIONS
+    // 3. LIVING BLOOD DRIPPING DIRECTLY ACROSS THE LOGO ART
     const canvas = document.getElementById('blood-canvas');
     const ctx = canvas.getContext('2d');
     let width, height;
     function resizeCanvas() {
       width = canvas.width = canvas.parentElement.offsetWidth;
-      height = canvas.height = canvas.parentElement.offsetHeight + 70;
+      height = canvas.height = canvas.parentElement.offsetHeight;
     }
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
-    // Specific points mapped directly to the logo's bottom drip points (Letter L, Slash, Letter F, bottom cuts)
-    const dripOrigins = [
-      { xRatio: 0.28, yRatio: 0.68 }, // Bottom tip of 'L'
-      { xRatio: 0.36, yRatio: 0.74 }, // Bottom slash cut
-      { xRatio: 0.48, yRatio: 0.77 }, // Center heavy drip
-      { xRatio: 0.53, yRatio: 0.73 }, // Cross cut drip
-      { xRatio: 0.65, yRatio: 0.69 }, // Bottom tip of 'F'
-      { xRatio: 0.74, yRatio: 0.62 }  // Slash tail drip
+    // Coordinates directly aligned with the slash cuts & letters of the logo
+    const cutStreams = [
+      { startX: 0.32, startY: 0.22, endY: 0.88, speed: 0.8 },
+      { startX: 0.44, startY: 0.35, endY: 0.95, speed: 1.1 },
+      { startX: 0.52, startY: 0.28, endY: 0.92, speed: 0.9 },
+      { startX: 0.62, startY: 0.42, endY: 0.98, speed: 1.2 },
+      { startX: 0.72, startY: 0.30, endY: 0.85, speed: 0.7 }
     ];
 
-    class LogoBloodDrip {
-      constructor(origin) {
-        this.origin = origin;
+    class FlowingBlood {
+      constructor(cfg) {
+        this.cfg = cfg;
         this.reset();
       }
       reset() {
-        this.x = width * this.origin.xRatio + (Math.random() * 6 - 3);
-        this.startY = height * this.origin.yRatio;
-        this.y = this.startY;
-        this.vy = 0.6 + Math.random() * 1.4;
-        this.gravity = 0.09;
-        this.length = 8 + Math.random() * 14;
-        this.radius = 2.2 + Math.random() * 1.6;
-        this.splashed = false;
-        this.splashRadius = 0;
+        this.x = width * this.cfg.startX + (Math.random() * 4 - 2);
+        this.y = height * this.cfg.startY;
+        this.limitY = height * this.cfg.endY;
+        this.trail = [];
+        this.speed = this.cfg.speed + Math.random() * 0.4;
+        this.radius = 2.5 + Math.random() * 1.5;
         this.opacity = 0.95;
       }
       update() {
-        if(!this.splashed) {
-          this.y += this.vy;
-          this.vy += this.gravity;
-          if(this.y >= height - 6) {
-            this.splashed = true;
-          }
-        } else {
-          this.splashRadius += 0.8;
-          this.opacity -= 0.06;
+        this.y += this.speed;
+        this.trail.push({ x: this.x, y: this.y });
+        if(this.trail.length > 25) this.trail.shift();
+        if(this.y >= this.limitY) {
+          this.opacity -= 0.04;
           if(this.opacity <= 0) this.reset();
         }
       }
       draw() {
+        if(this.trail.length < 2) return;
         ctx.save();
-        if(!this.splashed) {
-          // Viscous blood stream
-          ctx.beginPath();
-          ctx.strokeStyle = `rgba(180, 0, 10, ${this.opacity * 0.9})`;
-          ctx.lineWidth = this.radius * 1.5;
-          ctx.lineCap = 'round';
-          ctx.moveTo(this.x, this.y - this.length);
-          ctx.lineTo(this.x, this.y);
-          ctx.stroke();
-
-          // Falling blood drop bead
-          ctx.beginPath();
-          ctx.fillStyle = `rgba(220, 15, 25, ${this.opacity})`;
-          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-          ctx.fill();
-
-          // Wet highlight
-          ctx.beginPath();
-          ctx.fillStyle = `rgba(255, 120, 130, ${this.opacity * 0.7})`;
-          ctx.arc(this.x - 0.6, this.y - 0.6, this.radius * 0.45, 0, Math.PI * 2);
-          ctx.fill();
-        } else {
-          // Splat effect
-          ctx.beginPath();
-          ctx.strokeStyle = `rgba(200, 10, 20, ${this.opacity})`;
-          ctx.lineWidth = 1.6;
-          ctx.arc(this.x, height - 4, this.splashRadius, 0, Math.PI * 2);
-          ctx.stroke();
+        ctx.beginPath();
+        ctx.strokeStyle = `rgba(180, 0, 10, ${this.opacity * 0.85})`;
+        ctx.lineWidth = this.radius * 1.4;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        for(let i = 0; i < this.trail.length; i++) {
+          const pt = this.trail[i];
+          if(i === 0) ctx.moveTo(pt.x, pt.y);
+          else ctx.lineTo(pt.x, pt.y);
         }
+        ctx.stroke();
+
+        // Fresh liquid droplet at front
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(230, 15, 25, ${this.opacity})`;
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fill();
         ctx.restore();
       }
     }
 
-    const drips = dripOrigins.map(origin => new LogoBloodDrip(origin));
-    function animateLogoBlood() {
+    const bloodFlows = cutStreams.map(c => new FlowingBlood(c));
+    function renderBlood() {
       ctx.clearRect(0, 0, width, height);
-      drips.forEach(d => { d.update(); d.draw(); });
-      requestAnimationFrame(animateLogoBlood);
+      bloodFlows.forEach(f => { f.update(); f.draw(); });
+      requestAnimationFrame(renderBlood);
     }
-    animateLogoBlood();
+    renderBlood();
 
-    // 4. SLOT CONTROL (OPEN / CLOSED SWITCH)
+    // 4. SLOT CONTROL
     let isRegOpen = localStorage.getItem('lft_reg_open') !== 'false';
     function refreshRegStateUI() {
       const regBtn = document.getElementById('register-trigger-btn');
