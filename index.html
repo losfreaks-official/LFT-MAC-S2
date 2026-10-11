@@ -1,31 +1,31 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LOS FREAKS TROPHY — LFT MAC SEASON 2 (GVG)</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-    body { background-color: #070707; color: #f0f0f0; overflow-x: hidden; }
+    body { background-color: #050505; color: #f2f2f2; overflow-x: hidden; }
 
     /* 1. CINEMATIC 5-SECOND INTRO */
     #intro-screen {
-      position: fixed; inset: 0; background: #050505; z-index: 99999;
+      position: fixed; inset: 0; background: #030303; z-index: 99999;
       display: flex; flex-direction: column; justify-content: center; align-items: center;
       transition: opacity 0.8s ease, visibility 0.8s ease;
     }
     #skip-btn {
-      position: absolute; top: 20px; right: 20px; background: rgba(229,9,20,0.15);
+      position: absolute; top: 20px; right: 20px; background: rgba(229,9,20,0.25);
       border: 1px solid #e50914; color: #fff; padding: 6px 14px; border-radius: 4px;
       cursor: pointer; font-size: 11px; font-weight: bold; letter-spacing: 1px;
     }
     .intro-emblem {
       width: 220px; height: 220px; position: relative;
-      animation: assembleLogo 2.4s cubic-bezier(0.16, 1, 0.3, 1) forwards, zoomOutLogo 1.6s ease 2.4s forwards;
+      animation: assembleLogo 2.3s cubic-bezier(0.16, 1, 0.3, 1) forwards, zoomOutLogo 1.6s ease 2.3s forwards;
     }
     .shard {
       position: absolute; width: 50%; height: 50%;
-      background: radial-gradient(circle, #b30000 0%, #4a0000 80%);
+      background: radial-gradient(circle, #a80000 0%, #400000 80%);
       border: 2px solid #e50914;
     }
     .shard-1 { top: 0; left: 0; border-radius: 100% 0 0 0; animation: shardIn1 1.8s ease forwards; }
@@ -47,106 +47,156 @@
     @keyframes shardIn4 { from { transform: translate(140px, 140px) rotate(45deg); opacity: 0; } to { transform: translate(0,0) rotate(0); opacity: 1; } }
     @keyframes zoomOutLogo { 0% { transform: scale(1.1); } 100% { transform: scale(0.95); } }
 
-    /* 2. HEADER & 3-DOTS DRAWER */
+    /* 2. HEADER & DRAWER */
     header {
       display: flex; justify-content: space-between; align-items: center;
-      padding: 16px 20px; background: rgba(10,10,10,0.92); border-bottom: 1px solid rgba(229,9,20,0.3);
+      padding: 16px 20px; background: rgba(8,8,8,0.95); border-bottom: 1px solid rgba(229,9,20,0.3);
       position: sticky; top: 0; z-index: 100; backdrop-filter: blur(8px);
     }
     .brand-title { font-size: 15px; font-weight: 900; color: #ff1e27; letter-spacing: 1px; }
     .menu-btn { background: none; border: none; color: #fff; font-size: 24px; cursor: pointer; }
     #drawer {
       position: fixed; top: 0; right: -300px; width: 280px; height: 100%;
-      background: #0d0d0d; border-left: 1px solid #e50914; z-index: 2000;
+      background: #0a0a0a; border-left: 1px solid #e50914; z-index: 2000;
       transition: right 0.3s ease; padding: 25px 20px; display: flex; flex-direction: column; gap: 16px;
     }
     #drawer.open { right: 0; }
-    .drawer-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #282828; padding-bottom: 12px; }
+    .drawer-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; padding-bottom: 12px; }
     .social-link {
-      display: block; padding: 12px; background: #161616; border-radius: 6px;
-      color: #eee; text-decoration: none; border: 1px solid #282828; font-weight: bold; font-size: 13px;
+      display: block; padding: 12px; background: #141414; border-radius: 6px;
+      color: #eee; text-decoration: none; border: 1px solid #252525; font-weight: bold; font-size: 13px;
     }
     .social-link:hover { border-color: #e50914; color: #ff1e27; }
 
-    /* 3. HERO & TOURNAMENT DETAILS */
-    .hero { text-align: center; padding: 30px 16px 20px; max-width: 600px; margin: 0 auto; }
+    /* 3. HERO & LIVING LOGO STAGE */
+    .hero { text-align: center; padding: 25px 16px 20px; max-width: 600px; margin: 0 auto; }
     .hero-badges { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 15px; }
     .badge {
       background: rgba(229,9,20,0.15); border: 1px solid #e50914; color: #ff3b44;
       padding: 4px 10px; font-size: 11px; font-weight: bold; border-radius: 4px;
     }
-    .main-title { font-size: 26px; font-weight: 900; letter-spacing: 1.5px; text-transform: uppercase; color: #fff; }
-    .sub-title { font-size: 18px; color: #e50914; font-weight: 800; margin-top: 4px; letter-spacing: 1px; }
+    .main-title { font-size: 25px; font-weight: 900; letter-spacing: 1.5px; text-transform: uppercase; color: #fff; }
+    .sub-title { font-size: 17px; color: #e50914; font-weight: 800; margin-top: 4px; letter-spacing: 1px; }
 
-    .center-logo-wrap {
-      width: 140px; height: 140px; margin: 25px auto 20px; position: relative;
+    .logo-stage {
+      position: relative; width: 230px; height: 230px; margin: 25px auto 40px;
       display: flex; align-items: center; justify-content: center;
-      border-radius: 50%; box-shadow: 0 0 35px rgba(229,9,20,0.45);
-      background: radial-gradient(circle, #250204 0%, #080808 70%);
-      border: 2px solid rgba(229,9,20,0.6);
     }
-    .center-logo-wrap h2 { font-size: 38px; color: #ff1e27; text-shadow: 0 0 10px #e50914; }
-
-    .prize-card-wrap {
-      background: #111; border: 1px solid rgba(229,9,20,0.4); border-radius: 8px;
-      padding: 16px; margin: 20px 0;
+    .logo-halo {
+      position: absolute; inset: -15px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,0,10,0.35) 0%, rgba(0,0,0,0) 72%);
+      animation: bloodPulse 3s infinite alternate ease-in-out;
     }
-    .prize-total { font-size: 22px; font-weight: 900; color: #ff1e27; margin-bottom: 12px; }
-    .prize-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .prize-item { background: #161616; padding: 10px; border-radius: 6px; border: 1px solid #262626; }
-    .prize-item span { display: block; font-size: 11px; color: #aaa; }
-    .prize-item strong { font-size: 16px; color: #fff; }
+    .official-logo {
+      width: 100%; height: 100%; object-fit: contain; position: relative; z-index: 2;
+      filter: drop-shadow(0 0 20px rgba(180,0,10,0.8));
+      animation: wetSheen 4s infinite ease-in-out;
+    }
+    #blood-canvas {
+      position: absolute; top: 0; left: 0; width: 100%; height: 300px;
+      pointer-events: none; z-index: 3;
+    }
+    @keyframes bloodPulse { 0% { opacity: 0.35; transform: scale(0.96); } 100% { opacity: 0.85; transform: scale(1.08); } }
+    @keyframes wetSheen {
+      0%, 100% { filter: drop-shadow(0 0 20px rgba(180,0,10,0.8)) brightness(1); }
+      50% { filter: drop-shadow(0 0 30px rgba(240,10,20,1)) brightness(1.08); }
+    }
 
+    /* 4. PREMIUM SEPARATE PRIZE POOL CARDS */
+    .prize-headline { font-size: 20px; font-weight: 900; color: #ff1e27; margin: 15px 0 14px; letter-spacing: 1px; }
+    .prize-stack { display: flex; flex-direction: column; gap: 10px; margin-bottom: 25px; }
+    .prize-panel {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 18px; border-radius: 8px; border: 1px solid #222; text-align: left;
+    }
+    .panel-gold {
+      background: linear-gradient(90deg, #241400 0%, #120900 100%);
+      border-color: #ffd700; box-shadow: 0 0 16px rgba(255,215,0,0.25);
+    }
+    .panel-silver {
+      background: linear-gradient(90deg, #181d22 0%, #0d1012 100%);
+      border-color: #c0c0c0; box-shadow: 0 0 14px rgba(192,192,192,0.2);
+    }
+    .panel-bronze {
+      background: linear-gradient(90deg, #20140d 0%, #110905 100%);
+      border-color: #cd7f32; box-shadow: 0 0 14px rgba(205,127,50,0.2);
+    }
+    .panel-mvp {
+      background: linear-gradient(90deg, #240003 0%, #120002 100%);
+      border-color: #ff1e27; box-shadow: 0 0 15px rgba(255,30,39,0.3);
+    }
+    .panel-info h4 { font-size: 13px; font-weight: 900; letter-spacing: 1px; }
+    .panel-gold h4 { color: #ffd700; }
+    .panel-silver h4 { color: #e0e0e0; }
+    .panel-bronze h4 { color: #cd7f32; }
+    .panel-mvp h4 { color: #ff3b44; }
+    .panel-info p { font-size: 11px; color: #888; margin-top: 2px; }
+    .panel-amount { font-size: 20px; font-weight: 900; color: #fff; }
+
+    /* Slots Tracker */
     .slots-container { margin: 20px 0; }
     .slots-header { display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; margin-bottom: 6px; }
     .progress-bar-bg { width: 100%; height: 10px; background: #222; border-radius: 5px; overflow: hidden; }
     .progress-bar-fill { width: 0%; height: 100%; background: #e50914; box-shadow: 0 0 10px #e50914; transition: width 0.4s; }
 
     .btn-register {
-      width: 100%; padding: 15px; background: linear-gradient(180deg, #e50914, #990008);
+      width: 100%; padding: 16px; background: linear-gradient(180deg, #e50914, #990008);
       border: none; border-radius: 6px; color: #fff; font-size: 16px; font-weight: 900;
-      letter-spacing: 1.5px; cursor: pointer; box-shadow: 0 0 20px rgba(229,9,20,0.5); margin-top: 10px;
+      letter-spacing: 1.5px; cursor: pointer; box-shadow: 0 0 20px rgba(229,9,20,0.5);
+    }
+    .btn-register.disabled {
+      background: #2a2a2a; color: #777; cursor: not-allowed; box-shadow: none; border: 1px solid #444;
     }
 
-    /* 4. REGISTRATION MODAL */
+    /* 5. TWO-STEP REGISTRATION MODAL */
     .modal-overlay {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.88); backdrop-filter: blur(5px);
+      position: fixed; inset: 0; background: rgba(0,0,0,0.88); backdrop-filter: blur(6px);
       z-index: 3000; display: none; align-items: center; justify-content: center; padding: 15px;
     }
     .modal-card {
-      background: #0f0f0f; border: 1px solid #e50914; border-radius: 8px; width: 100%;
+      background: #0c0c0c; border: 1px solid #e50914; border-radius: 8px; width: 100%;
       max-width: 520px; max-height: 90vh; overflow-y: auto; padding: 20px;
     }
     .modal-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid #222; padding-bottom: 10px; }
     .btn-download-rules {
-      width: 100%; padding: 10px; background: #1c1c1c; border: 1px solid #e50914;
-      color: #ff3b44; font-weight: bold; border-radius: 6px; cursor: pointer; margin-bottom: 15px;
+      width: 100%; padding: 10px; background: #181818; border: 1px solid #e50914;
+      color: #ff3b44; font-weight: bold; border-radius: 6px; cursor: pointer; margin-bottom: 15px; font-size: 12px;
     }
     .rule-box {
       background: #141414; padding: 12px; border-radius: 6px; border: 1px solid #222;
-      font-size: 12px; line-height: 1.6; max-height: 250px; overflow-y: scroll; margin-bottom: 15px;
+      font-size: 12px; line-height: 1.6; max-height: 240px; overflow-y: scroll; margin-bottom: 15px;
     }
-    .rule-box h4 { color: #ff1e27; margin: 8px 0 4px; }
+    .rule-box h4 { color: #ff1e27; margin: 10px 0 4px; font-size: 13px; }
     .warning-banner {
-      background: rgba(229,9,20,0.15); border-left: 3px solid #e50914; padding: 8px;
-      font-size: 11px; color: #ff999d; margin: 10px 0; border-radius: 0 4px 4px 0;
+      background: rgba(229,9,20,0.15); border-left: 3px solid #e50914; padding: 10px;
+      font-size: 11px; color: #ff999d; margin: 10px 0; border-radius: 0 4px 4px 0; line-height: 1.4;
     }
     .input-group { margin-bottom: 12px; text-align: left; }
     .input-group label { display: block; font-size: 12px; color: #bbb; margin-bottom: 4px; }
     .input-group input {
-      width: 100%; padding: 10px; background: #1a1a1a; border: 1px solid #333;
+      width: 100%; padding: 10px; background: #181818; border: 1px solid #333;
       color: #fff; border-radius: 4px; font-size: 14px;
     }
     .input-group input:focus { border-color: #e50914; outline: none; }
     .roster-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 
-    footer { text-align: center; padding: 30px 15px; font-size: 12px; color: #666; }
-    .admin-link { color: #555; cursor: pointer; text-decoration: underline; margin-top: 10px; display: inline-block; }
+    /* HIDDEN ADMIN STYLES */
+    #admin-modal .modal-card { max-width: 750px; }
+    .admin-controls { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px; }
+    .btn-toggle-slot {
+      padding: 8px 14px; font-size: 12px; font-weight: bold; border-radius: 4px; border: none; cursor: pointer;
+    }
+    .btn-toggle-slot.open { background: #00873e; color: #fff; }
+    .btn-toggle-slot.closed { background: #e50914; color: #fff; }
+    .btn-pdf { background: #222; border: 1px solid #e50914; color: #fff; padding: 8px 14px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 12px; }
+
+    footer { text-align: center; padding: 35px 15px 25px; font-size: 12px; color: #444; }
+    .secret-trigger { cursor: default; user-select: none; }
   </style>
 </head>
 <body>
 
-  <!-- 1. CINEMATIC INTRO -->
+  <!-- 1. CINEMATIC 5-SECOND INTRO -->
   <div id="intro-screen">
     <button id="skip-btn" onclick="finishIntro()">SKIP INTRO ✕</button>
     <div class="intro-emblem">
@@ -167,18 +217,19 @@
     <button class="menu-btn" onclick="toggleDrawer()">⋮</button>
   </header>
 
+  <!-- SIDE DRAWER WITH REAL SOCIAL LINKS -->
   <div id="drawer">
     <div class="drawer-header">
       <h3 style="color:#ff1e27; font-size:16px;">LOS FREAKS NETWORK</h3>
       <button class="menu-btn" onclick="toggleDrawer()">✕</button>
     </div>
-    <a href="#" class="social-link">📸 Instagram Page</a>
-    <a href="#" class="social-link">💬 WhatsApp Channel</a>
-    <a href="#" class="social-link">🎥 YouTube Channel</a>
+    <a href="https://whatsapp.com/channel/0029VbDaZS27DAWsEH6dhW3V" target="_blank" class="social-link">💬 WhatsApp Channel</a>
+    <a href="https://youtube.com/@losfreaksofficial?si=hAttPnLTy68qNHzY" target="_blank" class="social-link">🎥 YouTube Channel</a>
+    <a href="#" class="social-link">📸 Instagram Page (Coming Soon)</a>
     <p style="font-size:11px; color:#555; margin-top:auto;">HOSTED BY LOS FREAKS</p>
   </div>
 
-  <!-- 3. HERO & TOURNAMENT CARD -->
+  <!-- 3. HERO & LIVING LOGO STAGE -->
   <div class="hero">
     <div class="hero-badges">
       <span class="badge">🔥 100% FREE ENTRY</span>
@@ -189,23 +240,50 @@
     <h1 class="main-title">LOS FREAKS TROPHY</h1>
     <h2 class="sub-title">LFT MAC SEASON 2 (GVG)</h2>
 
-    <div class="center-logo-wrap">
-      <h2>LF</h2>
+    <!-- Official Logo with Living Blood Drips from Logo Points -->
+    <div class="logo-stage">
+      <div class="logo-halo"></div>
+      <img src="enhanced_9bd1bf70-5157-4723-964d-c5a42cfc75d0-1000026904.png" alt="LOS FREAKS" class="official-logo">
+      <canvas id="blood-canvas"></canvas>
     </div>
 
-    <div class="prize-card-wrap">
-      <div class="prize-total">TOTAL PRIZE POOL: ₹3,000</div>
-      <div class="prize-grid">
-        <div class="prize-item"><span>🥇 1st PLACE</span><strong>₹1,500</strong></div>
-        <div class="prize-item"><span>🥈 2nd PLACE</span><strong>₹1,000</strong></div>
-        <div class="prize-item"><span>🥉 3rd PLACE</span><strong>₹400</strong></div>
-        <div class="prize-item"><span>🎖️ MVP</span><strong>₹100</strong></div>
+    <!-- Separate Prize Pool Panels -->
+    <div class="prize-headline">TOTAL PRIZE POOL: ₹3,000</div>
+    <div class="prize-stack">
+      <div class="prize-panel panel-gold">
+        <div class="panel-info">
+          <h4>🏆 CHAMPION (1ST PLACE)</h4>
+          <p>Grand Winner of LFT Season 2</p>
+        </div>
+        <div class="panel-amount">₹1,500</div>
+      </div>
+      <div class="prize-panel panel-silver">
+        <div class="panel-info">
+          <h4>🥈 RUNNER-UP (2ND PLACE)</h4>
+          <p>Finalist Squad</p>
+        </div>
+        <div class="panel-amount">₹1,000</div>
+      </div>
+      <div class="prize-panel panel-bronze">
+        <div class="panel-info">
+          <h4>🥉 3RD PLACE</h4>
+          <p>Semi-Finalist Squad</p>
+        </div>
+        <div class="panel-amount">₹400</div>
+      </div>
+      <div class="prize-panel panel-mvp">
+        <div class="panel-info">
+          <h4>🎖️ TOURNAMENT MVP</h4>
+          <p>Highest Frags / Predator</p>
+        </div>
+        <div class="panel-amount">₹100</div>
       </div>
     </div>
 
+    <!-- Slots Tracker -->
     <div class="slots-container">
       <div class="slots-header">
-        <span style="color:#aaa;">REGISTERED SQUADS</span>
+        <span style="color:#aaa;">CONFIRMED SLOTS</span>
         <span id="slot-counter" style="color:#ff1e27;">0 / 64 SQUADS</span>
       </div>
       <div class="progress-bar-bg">
@@ -213,10 +291,10 @@
       </div>
     </div>
 
-    <button class="btn-register" onclick="openRegistration()">REGISTER SQUAD NOW</button>
+    <button id="register-trigger-btn" class="btn-register" onclick="openRegistration()">REGISTER SQUAD NOW</button>
   </div>
 
-  <!-- 4. TWO-STEP REGISTRATION -->
+  <!-- 4. TWO-STEP REGISTRATION MODAL -->
   <div id="reg-modal" class="modal-overlay">
     <div class="modal-card">
       <div class="modal-head">
@@ -226,70 +304,70 @@
 
       <!-- STEP 1 -->
       <div id="step-1">
-        <button class="btn-download-rules" onclick="downloadRulesDoc()">📥 DOWNLOAD OFFICIAL RULEBOOK (TEXT)</button>
+        <button class="btn-download-rules" onclick="downloadRulesDoc()">📥 DOWNLOAD OFFICIAL RULEBOOK (TXT)</button>
         
         <div class="warning-banner">
-          ⚠️ <strong>ONE GUILD = ONLY ONE TEAM:</strong> एक गिल्ड से सिर्फ़ 1 टीम ही खेल सकती है। एक से अधिक टीमें पकड़े जाने पर तुरंत डिसक्वालिफाई किया जाएगा।
+          ⚠️ <strong>STRICT ELIGIBILITY: ONE GUILD = ONLY ONE TEAM ALLOWED.</strong> Multiple squads from the same guild or clan are strictly prohibited. Violators will face immediate squad disqualification.
         </div>
 
         <div class="rule-box">
           <h4>⚔️ MACBOOK MATCH RULES (15 RULES)</h4>
           01. Unlimited Gloo Wall Allowed<br>
-          02. Revive — Off<br>
-          03. Gun Attribute — Off<br>
-          04. Loadout — Off<br>
-          05. Skills: ALOK | CAROLINE | KELLY | MAXIM<br>
+          02. Revive — OFF<br>
+          03. Gun Attribute — OFF<br>
+          04. Loadout — OFF<br>
+          05. Skills Allowed: ALOK | CAROLINE | KELLY | MAXIM<br>
           06. All Pets Allowed<br>
           07. Headshot Mode Only<br>
-          08. Allowed Guns: Desert Eagle, UMP, M1887, M1014, Woodpecker<br>
-          09. Only 1 UMP per team<br>
-          10. Roof Not Allowed (Normal height allowed)<br>
+          08. Allowed Guns (5 Guns Only): Desert Eagle | UMP | M1887 | M1014 | Woodpecker<br>
+          09. UMP Restriction: Only 1 UMP allowed per team<br>
+          10. Roof Not Allowed (Normal ground height allowed)<br>
           11. Only 2 Wall Height (Container & Observatory)<br>
-          12. Recording Compulsory<br>
-          13. Return Before Round 2 with valid proof<br>
-          14. Final Zone: No Gloo, No Prone, No Punch<br>
-          15. VPN Strictly Prohibited
+          12. Match Recording is Compulsory for all players<br>
+          13. Disconnect Proof: Return before Round 2 with valid proof<br>
+          14. Final Zone (00:00): No Gloo | No Prone | No Punch. No wall breaking<br>
+          15. VPN is Strictly Prohibited
 
           <h4>🔍 CHECKING RULES (9 RULES)</h4>
-          01. Match Recording Mandatory<br>
-          02. Phone Check / Discord within 15 min<br>
-          03. Android: No Rooted, No Config/Hack files<br>
-          04. iOS: Developer Mode OFF<br>
-          05. No Device Change<br>
-          06. No ID Switching<br>
-          07. Zero Tolerance for Hacks/Scripts<br>
-          08. Fail to submit recording = DQ<br>
-          09. Organizer Decision Final & Binding
+          01. Match Recording is mandatory for all members<br>
+          02. Phone Check / Discord verification within 15 mins after match<br>
+          03. Android: No Rooted devices, No Config or Hack files<br>
+          04. iOS: Developer Mode must be OFF<br>
+          05. No Device Change during the tournament<br>
+          06. No Player ID Switching allowed<br>
+          07. Zero Tolerance: Any hack, config, panel, script = Direct Disqualification<br>
+          08. Failure to submit recording within 15 mins = Team Disqualification<br>
+          09. Organizer's Decision is Final and Binding
         </div>
 
         <label style="font-size:12px; display:flex; gap:8px; align-items:flex-start; margin-bottom:15px; cursor:pointer;">
           <input type="checkbox" id="rule-agree">
-          <span>मैंने पूरे नियम पढ़ लिए हैं और हमारी गिल्ड इन सभी नियमों का पालन करेगी।</span>
+          <span>I, as Team Captain/IGL, have read all rules and verify my squad will strictly follow them.</span>
         </label>
 
-        <button class="btn-register" onclick="goToStep2()">PROCEED TO SQUAD DETAILS →</button>
+        <button class="btn-register" onclick="goToStep2()">PROCEED TO SQUAD REGISTRATION →</button>
       </div>
 
       <!-- STEP 2 -->
       <div id="step-2" style="display:none;">
         <div class="input-group">
           <label>Team Name *</label>
-          <input type="text" id="t-name" placeholder="e.g. FREAKS WARRIORS">
+          <input type="text" id="t-name" placeholder="e.g. FREAKS ESPORTS">
         </div>
         <div class="input-group">
-          <label>Guild Name * (1 Guild = 1 Team)</label>
+          <label>Guild Name * (1 Guild = 1 Team Rule)</label>
           <input type="text" id="g-name" placeholder="Exact Guild Name">
         </div>
         <div class="input-group">
           <label>Captain / IGL WhatsApp Number *</label>
           <input type="tel" id="c-phone" placeholder="10-digit WhatsApp number">
-          <div class="warning-banner" style="margin-top:4px;">
-            ⚠️ <strong>चेतावनी:</strong> रूम ID/Password सिर्फ़ इसी WhatsApp नंबर पर आएगा। रजिस्ट्रेशन के बाद नंबर नहीं बदलेगा।
+          <div class="warning-banner" style="margin-top:6px;">
+            ⚠️ <strong>CRITICAL WARNING:</strong> Room ID & Password will ONLY be sent to this WhatsApp number. No number changes permitted after registration. Enter carefully!
           </div>
         </div>
 
-        <label style="font-size:12px; color:#ff1e27; font-weight:bold; display:block; margin:12px 0 6px;">
-          ROSTER: 6 PLAYERS (IN-GAME NAMES ONLY)
+        <label style="font-size:12px; color:#ff1e27; font-weight:bold; display:block; margin:14px 0 6px;">
+          ROSTER — EXACTLY 6 PLAYERS (IN-GAME NAMES ONLY)
         </label>
         <div class="roster-grid">
           <div class="input-group"><input type="text" id="p1" placeholder="Player 1 (IGL IGN)"></div>
@@ -300,7 +378,7 @@
           <div class="input-group"><input type="text" id="p6" placeholder="Player 6 IGN"></div>
         </div>
         <div class="warning-banner">
-          ⚠️ <strong>ROSTER LOCK:</strong> सिर्फ़ यही 6 दर्ज प्लेयर खेल सकते हैं। कोई बाहरी प्लेयर रूम में नहीं आ सकेगा।
+          ⚠️ <strong>ROSTER LOCK:</strong> Strictly only these 6 registered IGNs are allowed to play. Unregistered players will not be allowed inside custom rooms under any circumstance.
         </div>
 
         <button class="btn-register" onclick="submitRegistration()">CONFIRM & SUBMIT SQUAD</button>
@@ -308,12 +386,32 @@
     </div>
   </div>
 
+  <!-- 5. HIDDEN SECRET ADMIN DASHBOARD -->
+  <div id="admin-modal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3 style="color:#ff1e27; font-size:16px;">SECRET ADMIN DASHBOARD</h3>
+        <button class="menu-btn" onclick="closeAdmin()">✕</button>
+      </div>
+      <div class="admin-controls">
+        <div>
+          <span style="font-size:12px; color:#aaa; margin-right:8px;">REGISTRATION STATUS:</span>
+          <button id="slot-toggle-btn" class="btn-toggle-slot open" onclick="toggleRegistrationState()">SLOTS: OPEN</button>
+        </div>
+        <button class="btn-pdf" onclick="exportDataToPDF()">📥 EXPORT ALL SQUADS (PDF)</button>
+      </div>
+      <div id="admin-squad-table" style="max-height:350px; overflow-y:auto; border:1px solid #222; border-radius:6px;">
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
   <footer>
-    <p>HOSTED BY LOS FREAKS</p>
-    <span class="admin-link" onclick="openAdmin()">Admin Portal (Export PDF)</span>
+    <p id="secret-footer" class="secret-trigger" onclick="handleSecretTap()">HOSTED BY LOS FREAKS</p>
   </footer>
 
   <script>
+    // 1. Intro screen timer
     const introTimer = setTimeout(finishIntro, 5000);
     function finishIntro() {
       clearTimeout(introTimer);
@@ -322,22 +420,140 @@
       setTimeout(() => { intro.style.display = 'none'; }, 800);
     }
 
-    function toggleDrawer() {
-      document.getElementById('drawer').classList.toggle('open');
+    // 2. Drawer
+    function toggleDrawer() { document.getElementById('drawer').classList.toggle('open'); }
+
+    // 3. LIVING BLOOD DRIPS FROM LOGO'S EXACT DRIP LOCATIONS
+    const canvas = document.getElementById('blood-canvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    function resizeCanvas() {
+      width = canvas.width = canvas.parentElement.offsetWidth;
+      height = canvas.height = canvas.parentElement.offsetHeight + 70;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    // Specific points mapped directly to the logo's bottom drip points (Letter L, Slash, Letter F, bottom cuts)
+    const dripOrigins = [
+      { xRatio: 0.28, yRatio: 0.68 }, // Bottom tip of 'L'
+      { xRatio: 0.36, yRatio: 0.74 }, // Bottom slash cut
+      { xRatio: 0.48, yRatio: 0.77 }, // Center heavy drip
+      { xRatio: 0.53, yRatio: 0.73 }, // Cross cut drip
+      { xRatio: 0.65, yRatio: 0.69 }, // Bottom tip of 'F'
+      { xRatio: 0.74, yRatio: 0.62 }  // Slash tail drip
+    ];
+
+    class LogoBloodDrip {
+      constructor(origin) {
+        this.origin = origin;
+        this.reset();
+      }
+      reset() {
+        this.x = width * this.origin.xRatio + (Math.random() * 6 - 3);
+        this.startY = height * this.origin.yRatio;
+        this.y = this.startY;
+        this.vy = 0.6 + Math.random() * 1.4;
+        this.gravity = 0.09;
+        this.length = 8 + Math.random() * 14;
+        this.radius = 2.2 + Math.random() * 1.6;
+        this.splashed = false;
+        this.splashRadius = 0;
+        this.opacity = 0.95;
+      }
+      update() {
+        if(!this.splashed) {
+          this.y += this.vy;
+          this.vy += this.gravity;
+          if(this.y >= height - 6) {
+            this.splashed = true;
+          }
+        } else {
+          this.splashRadius += 0.8;
+          this.opacity -= 0.06;
+          if(this.opacity <= 0) this.reset();
+        }
+      }
+      draw() {
+        ctx.save();
+        if(!this.splashed) {
+          // Viscous blood stream
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(180, 0, 10, ${this.opacity * 0.9})`;
+          ctx.lineWidth = this.radius * 1.5;
+          ctx.lineCap = 'round';
+          ctx.moveTo(this.x, this.y - this.length);
+          ctx.lineTo(this.x, this.y);
+          ctx.stroke();
+
+          // Falling blood drop bead
+          ctx.beginPath();
+          ctx.fillStyle = `rgba(220, 15, 25, ${this.opacity})`;
+          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+          ctx.fill();
+
+          // Wet highlight
+          ctx.beginPath();
+          ctx.fillStyle = `rgba(255, 120, 130, ${this.opacity * 0.7})`;
+          ctx.arc(this.x - 0.6, this.y - 0.6, this.radius * 0.45, 0, Math.PI * 2);
+          ctx.fill();
+        } else {
+          // Splat effect
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(200, 10, 20, ${this.opacity})`;
+          ctx.lineWidth = 1.6;
+          ctx.arc(this.x, height - 4, this.splashRadius, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+        ctx.restore();
+      }
+    }
+
+    const drips = dripOrigins.map(origin => new LogoBloodDrip(origin));
+    function animateLogoBlood() {
+      ctx.clearRect(0, 0, width, height);
+      drips.forEach(d => { d.update(); d.draw(); });
+      requestAnimationFrame(animateLogoBlood);
+    }
+    animateLogoBlood();
+
+    // 4. SLOT CONTROL (OPEN / CLOSED SWITCH)
+    let isRegOpen = localStorage.getItem('lft_reg_open') !== 'false';
+    function refreshRegStateUI() {
+      const regBtn = document.getElementById('register-trigger-btn');
+      const toggleBtn = document.getElementById('slot-toggle-btn');
+      if(isRegOpen) {
+        regBtn.classList.remove('disabled');
+        regBtn.innerText = "REGISTER SQUAD NOW";
+        if(toggleBtn) { toggleBtn.className = "btn-toggle-slot open"; toggleBtn.innerText = "SLOTS: OPEN"; }
+      } else {
+        regBtn.classList.add('disabled');
+        regBtn.innerText = "REGISTRATIONS CLOSED";
+        if(toggleBtn) { toggleBtn.className = "btn-toggle-slot closed"; toggleBtn.innerText = "SLOTS: CLOSED"; }
+      }
+    }
+    refreshRegStateUI();
+
+    function toggleRegistrationState() {
+      isRegOpen = !isRegOpen;
+      localStorage.setItem('lft_reg_open', isRegOpen);
+      refreshRegStateUI();
     }
 
     function openRegistration() {
+      if(!isRegOpen) {
+        alert("Registration is currently closed by the organizers!");
+        return;
+      }
       document.getElementById('reg-modal').style.display = 'flex';
       document.getElementById('step-1').style.display = 'block';
       document.getElementById('step-2').style.display = 'none';
       document.getElementById('step-title').innerText = "STEP 1: OFFICIAL RULEBOOK";
     }
-    function closeRegistration() {
-      document.getElementById('reg-modal').style.display = 'none';
-    }
+    function closeRegistration() { document.getElementById('reg-modal').style.display = 'none'; }
     function goToStep2() {
       if(!document.getElementById('rule-agree').checked) {
-        alert("कृपया आगे बढ़ने से पहले नियमों को स्वीकार करें!");
+        alert("Please accept the rulebook first!");
         return;
       }
       document.getElementById('step-1').style.display = 'none';
@@ -345,15 +561,7 @@
       document.getElementById('step-title').innerText = "STEP 2: SQUAD DETAILS";
     }
 
-    function downloadRulesDoc() {
-      const text = "LOS FREAKS TROPHY - LFT MAC SEASON 2 (GVG) RULES\n\n1 Guild = Only 1 Team\nPrize Pool: ₹3,000 (1st: 1500, 2nd: 1000, 3rd: 400, MVP: 100)\n\n15 MATCH RULES:\n- M1887, UMP, Woodpecker, M1014, Deagle\n- Skills: Alok, Caroline, Kelly, Maxim\n- Match Recording Compulsory\n- Phone Check within 15 min\n- Hosted by LOS FREAKS";
-      const blob = new Blob([text], {type: "text/plain"});
-      const a = document.createElement("a");
-      a.href = URL.createObjectURL(blob);
-      a.download = "LFT_MAC_Season2_Rulebook.txt";
-      a.click();
-    }
-
+    // 5. REGISTRATION SUBMIT & COUNTER
     let squads = JSON.parse(localStorage.getItem('lft_squads') || '[]');
     updateSlotUI();
 
@@ -369,7 +577,7 @@
       const p6 = document.getElementById('p6').value.trim();
 
       if(!tName || !gName || !phone || !p1 || !p2 || !p3 || !p4 || !p5 || !p6) {
-        alert("कृपया सभी 6 खिलाड़ियों के नाम और टीम की पूरी जानकारी भरें!");
+        alert("Please fill all details and all 6 player in-game names!");
         return;
       }
 
@@ -377,7 +585,7 @@
       localStorage.setItem('lft_squads', JSON.stringify(squads));
       updateSlotUI();
       closeRegistration();
-      alert("✅ रजिस्ट्रेशन सफल हुआ! आपका स्लॉट सुरक्षित कर लिया गया है।");
+      alert("✅ Registration Successful! Slot confirmed.");
     }
 
     function updateSlotUI() {
@@ -386,27 +594,79 @@
       document.getElementById('progress-bar').style.width = `${(count / 64) * 100}%`;
     }
 
-    function openAdmin() {
+    function downloadRulesDoc() {
+      const text = "LOS FREAKS TROPHY — LFT MAC SEASON 2 (GVG)\nOFFICIAL RULEBOOK\n\n1 GUILD = ONLY 1 TEAM ALLOWED\nPRIZE POOL: Rs 3,000 (1st: 1500, 2nd: 1000, 3rd: 400, MVP: 100)\n\n15 MATCH RULES:\n- M1887, UMP (1 per team), Woodpecker, M1014, Desert Eagle\n- Skills: Alok, Caroline, Kelly, Maxim\n- Match Recording Compulsory\n- Phone Check within 15 min\n- Hosted by LOS FREAKS";
+      const blob = new Blob([text], {type: "text/plain"});
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "LFT_MAC_Season2_Rulebook.txt";
+      a.click();
+    }
+
+    // 6. HIDDEN ADMIN TRIGGER (TRIPLE TAP OR #admin)
+    let tapCount = 0;
+    let tapTimer;
+    function handleSecretTap() {
+      tapCount++;
+      clearTimeout(tapTimer);
+      tapTimer = setTimeout(() => { tapCount = 0; }, 800);
+      if(tapCount >= 3) {
+        tapCount = 0;
+        triggerAdminPrompt();
+      }
+    }
+
+    window.addEventListener('load', () => {
+      if(window.location.hash === '#admin') triggerAdminPrompt();
+    });
+
+    function triggerAdminPrompt() {
       const pass = prompt("Enter Admin Passcode:");
       if(pass === "LFT2026") {
-        if(squads.length === 0) {
-          alert("अभी कोई टीम रजिस्टर नहीं हुई है। पहले फ़ॉर्म भरके टेस्ट करें!");
-          return;
-        }
-        let printWindow = window.open('', '', 'width=800,height=600');
-        let html = '<h2>LOS FREAKS TROPHY — LFT MAC SEASON 2 (GVG)</h2>';
-        html += '<p>Official Registered Roster</p><table border="1" cellpadding="8" style="border-collapse:collapse;width:100%;font-size:12px;">';
-        html += '<tr><th>Slot</th><th>Team</th><th>Guild</th><th>WhatsApp</th><th>6 Players (IGN)</th></tr>';
-        squads.forEach(s => {
-          html += `<tr><td>${s.slot}</td><td>${s.tName}</td><td>${s.gName}</td><td>${s.phone}</td><td>${s.p1}, ${s.p2}, ${s.p3}, ${s.p4}, ${s.p5}, ${s.p6}</td></tr>`;
-        });
-        html += '</table>';
-        printWindow.document.write(html);
-        printWindow.document.close();
-        printWindow.print();
-      } else {
-        alert("गलत पासकोड!");
+        openAdminDashboard();
+      } else if(pass !== null) {
+        alert("Incorrect Passcode!");
       }
+    }
+
+    function openAdminDashboard() {
+      document.getElementById('admin-modal').style.display = 'flex';
+      refreshRegStateUI();
+      renderAdminTable();
+    }
+    function closeAdmin() {
+      document.getElementById('admin-modal').style.display = 'none';
+      if(window.location.hash === '#admin') history.replaceState(null, null, ' ');
+    }
+
+    function renderAdminTable() {
+      const box = document.getElementById('admin-squad-table');
+      if(squads.length === 0) {
+        box.innerHTML = '<p style="padding:15px; color:#777; font-size:12px; text-align:center;">No squads registered yet.</p>';
+        return;
+      }
+      let html = '<table style="width:100%; border-collapse:collapse; font-size:11px; text-align:left;">';
+      html += '<tr style="background:#161616; color:#ff1e27;"><th style="padding:8px;">#</th><th style="padding:8px;">Team</th><th style="padding:8px;">Guild</th><th style="padding:8px;">WhatsApp</th><th style="padding:8px;">Roster (6 IGNs)</th></tr>';
+      squads.forEach(s => {
+        html += `<tr style="border-top:1px solid #222;"><td style="padding:8px;">${s.slot}</td><td style="padding:8px; font-weight:bold;">${s.tName}</td><td style="padding:8px;">${s.gName}</td><td style="padding:8px; color:#25D366;">${s.phone}</td><td style="padding:8px;">${s.p1}, ${s.p2}, ${s.p3}, ${s.p4}, ${s.p5}, ${s.p6}</td></tr>`;
+      });
+      html += '</table>';
+      box.innerHTML = html;
+    }
+
+    function exportDataToPDF() {
+      if(squads.length === 0) { alert("No squads to export!"); return; }
+      let win = window.open('', '', 'width=900,height=650');
+      let html = '<h2>LOS FREAKS TROPHY — LFT MAC SEASON 2 (GVG)</h2>';
+      html += '<p>Official Squad Roster & Verification Sheet</p><table border="1" cellpadding="8" style="border-collapse:collapse;width:100%;font-size:12px;">';
+      html += '<tr style="background:#f2f2f2;"><th>Slot</th><th>Team Name</th><th>Guild Name</th><th>WhatsApp</th><th>6 Players (IGN)</th></tr>';
+      squads.forEach(s => {
+        html += `<tr><td>${s.slot}</td><td>${s.tName}</td><td>${s.gName}</td><td>${s.phone}</td><td>${s.p1}, ${s.p2}, ${s.p3}, ${s.p4}, ${s.p5}, ${s.p6}</td></tr>`;
+      });
+      html += '</table>';
+      win.document.write(html);
+      win.document.close();
+      win.print();
     }
   </script>
 </body>
