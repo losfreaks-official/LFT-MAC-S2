@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LOS FREAKS TROPHY — LFT MAC SEASON 2 (GVG)</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+    body { background-color: #070707; color: #f0f0f0; overflow-x: hidden; }
+
+    /* 1. CINEMATIC 5-SECOND INTRO */
+    #intro-screen {
+      position: fixed; inset: 0; background: #050505; z-index: 99999;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+    #skip-btn {
+      position: absolute; top: 20px; right: 20px; background: rgba(229,9,20,0.15);
+      border: 1px solid #e50914; color: #fff; padding: 6px 14px; border-radius: 4px;
+      cursor: pointer; font-size: 11px; font-weight: bold; letter-spacing: 1px;
+    }
+    .intro-emblem {
+      width: 220px; height: 220px; position: relative;
+      animation: assembleLogo 2.4s cubic-bezier(0.16, 1, 0.3, 1) forwards, zoomOutLogo 1.6s ease 2.4s forwards;
+    }
+    .shard {
+      position: absolute; width: 50%; height: 50%;
+      background: radial-gradient(circle, #b30000 0%, #4a0000 80%);
+      border: 2px solid #e50914;
+    }
+    .shard-1 { top: 0; left: 0; border-radius: 100% 0 0 0; animation: shardIn1 1.8s ease forwards; }
+    .shard-2 { top: 0; right: 0; border-radius: 0 100% 0 0; animation: shardIn2 1.8s ease forwards; }
+    .shard-3 { bottom: 0; left: 0; border-radius: 0 0 0 100%; animation: shardIn3 1.8s ease forwards; }
+    .shard-4 { bottom: 0; right: 0; border-radius: 0 0 100% 0; animation: shardIn4 1.8s ease forwards; }
+    .emblem-core {
+      position: absolute; inset: 15px; border-radius: 50%;
+      background: #000; border: 2px solid #ff1e27; display: flex;
+      flex-direction: column; align-items: center; justify-content: center;
+      box-shadow: 0 0 35px rgba(229,9,20,0.85);
+    }
+    .emblem-text { font-size: 34px; font-weight: 900; color: #ff1e27; letter-spacing: 2px; text-shadow: 0 0 15px #e50914; }
+    .emblem-sub { font-size: 10px; letter-spacing: 4px; color: #aaa; margin-top: 4px; }
+
+    @keyframes shardIn1 { from { transform: translate(-140px, -140px) rotate(-45deg); opacity: 0; } to { transform: translate(0,0) rotate(0); opacity: 1; } }
+    @keyframes shardIn2 { from { transform: translate(140px, -140px) rotate(45deg); opacity: 0; } to { transform: translate(0,0) rotate(0); opacity: 1; } }
+    @keyframes shardIn3 { from { transform: translate(-140px, 140px) rotate(-45deg); opacity: 0; } to { transform: translate(0,0) rotate(0); opacity: 1; } }
+    @keyframes shardIn4 { from { transform: translate(140px, 140px) rotate(45deg); opacity: 0; } to { transform: translate(0,0) rotate(0); opacity: 1; } }
+    @keyframes zoomOutLogo { 0% { transform: scale(1.1); } 100% { transform: scale(0.95); } }
+
+    /* 2. HEADER & 3-DOTS DRAWER */
+    header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 16px 20px; background: rgba(10,10,10,0.92); border-bottom: 1px solid rgba(229,9,20,0.3);
+      position: sticky; top: 0; z-index: 100; backdrop-filter: blur(8px);
+    }
+    .brand-title { font-size: 15px; font-weight: 900; color: #ff1e27; letter-spacing: 1px; }
+    .menu-btn { background: none; border: none; color: #fff; font-size: 24px; cursor: pointer; }
+    #drawer {
+      position: fixed; top: 0; right: -300px; width: 280px; height: 100%;
+      background: #0d0d0d; border-left: 1px solid #e50914; z-index: 2000;
+      transition: right 0.3s ease; padding: 25px 20px; display: flex; flex-direction: column; gap: 16px;
+    }
+    #drawer.open { right: 0; }
+    .drawer-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #282828; padding-bottom: 12px; }
+    .social-link {
+      display: block; padding: 12px; background: #161616; border-radius: 6px;
+      color: #eee; text-decoration: none; border: 1px solid #282828; font-weight: bold; font-size: 13px;
+    }
+    .social-link:hover { border-color: #e50914; color: #ff1e27; }
+
+    /* 3. HERO & TOURNAMENT DETAILS */
+    .hero { text-align: center; padding: 30px 16px 20px; max-width: 600px; margin: 0 auto; }
+    .hero-badges { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 15px; }
+    .badge {
+      background: rgba(229,9,20,0.15); border: 1px solid #e50914; color: #ff3b44;
+      padding: 4px 10px; font-size: 11px; font-weight: bold; border-radius: 4px;
+    }
+    .main-title { font-size: 26px; font-weight: 900; letter-spacing: 1.5px; text-transform: uppercase; color: #fff; }
+    .sub-title { font-size: 18px; color: #e50914; font-weight: 800; margin-top: 4px; letter-spacing: 1px; }
+
+    .center-logo-wrap {
+      width: 140px; height: 140px; margin: 25px auto 20px; position: relative;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%; box-shadow: 0 0 35px rgba(229,9,20,0.45);
+      background: radial-gradient(circle, #250204 0%, #080808 70%);
+      border: 2px solid rgba(229,9,20,0.6);
+    }
+    .center-logo-wrap h2 { font-size: 38px; color: #ff1e27; text-shadow: 0 0 10px #e50914; }
+
+    .prize-card-wrap {
+      background: #111; border: 1px solid rgba(229,9,20,0.4); border-radius: 8px;
+      padding: 16px; margin: 20px 0;
+    }
+    .prize-total { font-size: 22px; font-weight: 900; color: #ff1e27; margin-bottom: 12px; }
+    .prize-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .prize-item { background: #161616; padding: 10px; border-radius: 6px; border: 1px solid #262626; }
+    .prize-item span { display: block; font-size: 11px; color: #aaa; }
+    .prize-item strong { font-size: 16px; color: #fff; }
+
+    .slots-container { margin: 20px 0; }
+    .slots-header { display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; margin-bottom: 6px; }
+    .progress-bar-bg { width: 100%; height: 10px; background: #222; border-radius: 5px; overflow: hidden; }
+    .progress-bar-fill { width: 0%; height: 100%; background: #e50914; box-shadow: 0 0 10px #e50914; transition: width 0.4s; }
+
+    .btn-register {
+      width: 100%; padding: 15px; background: linear-gradient(180deg, #e50914, #990008);
+      border: none; border-radius: 6px; color: #fff; font-size: 16px; font-weight: 900;
+      letter-spacing: 1.5px; cursor: pointer; box-shadow: 0 0 20px rgba(229,9,20,0.5); margin-top: 10px;
+    }
+
+    /* 4. REGISTRATION MODAL */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.88); backdrop-filter: blur(5px);
+      z-index: 3000; display: none; align-items: center; justify-content: center; padding: 15px;
+    }
+    .modal-card {
+      background: #0f0f0f; border: 1px solid #e50914; border-radius: 8px; width: 100%;
+      max-width: 520px; max-height: 90vh; overflow-y: auto; padding: 20px;
+    }
+    .modal-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid #222; padding-bottom: 10px; }
+    .btn-download-rules {
+      width: 100%; padding: 10px; background: #1c1c1c; border: 1px solid #e50914;
+      color: #ff3b44; font-weight: bold; border-radius: 6px; cursor: pointer; margin-bottom: 15px;
+    }
+    .rule-box {
+      background: #141414; padding: 12px; border-radius: 6px; border: 1px solid #222;
+      font-size: 12px; line-height: 1.6; max-height: 250px; overflow-y: scroll; margin-bottom: 15px;
+    }
+    .rule-box h4 { color: #ff1e27; margin: 8px 0 4px; }
+    .warning-banner {
+      background: rgba(229,9,20,0.15); border-left: 3px solid #e50914; padding: 8px;
+      font-size: 11px; color: #ff999d; margin: 10px 0; border-radius: 0 4px 4px 0;
+    }
+    .input-group { margin-bottom: 12px; text-align: left; }
+    .input-group label { display: block; font-size: 12px; color: #bbb; margin-bottom: 4px; }
+    .input-group input {
+      width: 100%; padding: 10px; background: #1a1a1a; border: 1px solid #333;
+      color: #fff; border-radius: 4px; font-size: 14px;
+    }
+    .input-group input:focus { border-color: #e50914; outline: none; }
+    .roster-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+    footer { text-align: center; padding: 30px 15px; font-size: 12px; color: #666; }
+    .admin-link { color: #555; cursor: pointer; text-decoration: underline; margin-top: 10px; display: inline-block; }
+  </style>
+</head>
+<body>
+
+  <!-- 1. CINEMATIC INTRO -->
+  <div id="intro-screen">
+    <button id="skip-btn" onclick="finishIntro()">SKIP INTRO ✕</button>
+    <div class="intro-emblem">
+      <div class="shard shard-1"></div>
+      <div class="shard shard-2"></div>
+      <div class="shard shard-3"></div>
+      <div class="shard shard-4"></div>
+      <div class="emblem-core">
+        <div class="emblem-text">LF</div>
+        <div class="emblem-sub">LOS FREAKS</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. HEADER & MENU -->
+  <header>
+    <div class="brand-title">LOS FREAKS ESPORTS</div>
+    <button class="menu-btn" onclick="toggleDrawer()">⋮</button>
+  </header>
+
+  <div id="drawer">
+    <div class="drawer-header">
+      <h3 style="color:#ff1e27; font-size:16px;">LOS FREAKS NETWORK</h3>
+      <button class="menu-btn" onclick="toggleDrawer()">✕</button>
+    </div>
+    <a href="#" class="social-link">📸 Instagram Page</a>
+    <a href="#" class="social-link">💬 WhatsApp Channel</a>
+    <a href="#" class="social-link">🎥 YouTube Channel</a>
+    <p style="font-size:11px; color:#555; margin-top:auto;">HOSTED BY LOS FREAKS</p>
+  </div>
+
+  <!-- 3. HERO & TOURNAMENT CARD -->
+  <div class="hero">
+    <div class="hero-badges">
+      <span class="badge">🔥 100% FREE ENTRY</span>
+      <span class="badge">⚔️ GVG (GUILD VS GUILD)</span>
+      <span class="badge">🎮 4v4 CLASH SQUAD</span>
+    </div>
+
+    <h1 class="main-title">LOS FREAKS TROPHY</h1>
+    <h2 class="sub-title">LFT MAC SEASON 2 (GVG)</h2>
+
+    <div class="center-logo-wrap">
+      <h2>LF</h2>
+    </div>
+
+    <div class="prize-card-wrap">
+      <div class="prize-total">TOTAL PRIZE POOL: ₹3,000</div>
+      <div class="prize-grid">
+        <div class="prize-item"><span>🥇 1st PLACE</span><strong>₹1,500</strong></div>
+        <div class="prize-item"><span>🥈 2nd PLACE</span><strong>₹1,000</strong></div>
+        <div class="prize-item"><span>🥉 3rd PLACE</span><strong>₹400</strong></div>
+        <div class="prize-item"><span>🎖️ MVP</span><strong>₹100</strong></div>
+      </div>
+    </div>
+
+    <div class="slots-container">
+      <div class="slots-header">
+        <span style="color:#aaa;">REGISTERED SQUADS</span>
+        <span id="slot-counter" style="color:#ff1e27;">0 / 64 SQUADS</span>
+      </div>
+      <div class="progress-bar-bg">
+        <div id="progress-bar" class="progress-bar-fill"></div>
+      </div>
+    </div>
+
+    <button class="btn-register" onclick="openRegistration()">REGISTER SQUAD NOW</button>
+  </div>
+
+  <!-- 4. TWO-STEP REGISTRATION -->
+  <div id="reg-modal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3 id="step-title" style="color:#ff1e27; font-size:16px;">STEP 1: OFFICIAL RULEBOOK</h3>
+        <button class="menu-btn" onclick="closeRegistration()">✕</button>
+      </div>
+
+      <!-- STEP 1 -->
+      <div id="step-1">
+        <button class="btn-download-rules" onclick="downloadRulesDoc()">📥 DOWNLOAD OFFICIAL RULEBOOK (TEXT)</button>
+        
+        <div class="warning-banner">
+          ⚠️ <strong>ONE GUILD = ONLY ONE TEAM:</strong> एक गिल्ड से सिर्फ़ 1 टीम ही खेल सकती है। एक से अधिक टीमें पकड़े जाने पर तुरंत डिसक्वालिफाई किया जाएगा।
+        </div>
+
+        <div class="rule-box">
+          <h4>⚔️ MACBOOK MATCH RULES (15 RULES)</h4>
+          01. Unlimited Gloo Wall Allowed<br>
+          02. Revive — Off<br>
+          03. Gun Attribute — Off<br>
+          04. Loadout — Off<br>
+          05. Skills: ALOK | CAROLINE | KELLY | MAXIM<br>
+          06. All Pets Allowed<br>
+          07. Headshot Mode Only<br>
+          08. Allowed Guns: Desert Eagle, UMP, M1887, M1014, Woodpecker<br>
+          09. Only 1 UMP per team<br>
+          10. Roof Not Allowed (Normal height allowed)<br>
+          11. Only 2 Wall Height (Container & Observatory)<br>
+          12. Recording Compulsory<br>
+          13. Return Before Round 2 with valid proof<br>
+          14. Final Zone: No Gloo, No Prone, No Punch<br>
+          15. VPN Strictly Prohibited
+
+          <h4>🔍 CHECKING RULES (9 RULES)</h4>
+          01. Match Recording Mandatory<br>
+          02. Phone Check / Discord within 15 min<br>
+          03. Android: No Rooted, No Config/Hack files<br>
+          04. iOS: Developer Mode OFF<br>
+          05. No Device Change<br>
+          06. No ID Switching<br>
+          07. Zero Tolerance for Hacks/Scripts<br>
+          08. Fail to submit recording = DQ<br>
+          09. Organizer Decision Final & Binding
+        </div>
+
+        <label style="font-size:12px; display:flex; gap:8px; align-items:flex-start; margin-bottom:15px; cursor:pointer;">
+          <input type="checkbox" id="rule-agree">
+          <span>मैंने पूरे नियम पढ़ लिए हैं और हमारी गिल्ड इन सभी नियमों का पालन करेगी।</span>
+        </label>
+
+        <button class="btn-register" onclick="goToStep2()">PROCEED TO SQUAD DETAILS →</button>
+      </div>
+
+      <!-- STEP 2 -->
+      <div id="step-2" style="display:none;">
+        <div class="input-group">
+          <label>Team Name *</label>
+          <input type="text" id="t-name" placeholder="e.g. FREAKS WARRIORS">
+        </div>
+        <div class="input-group">
+          <label>Guild Name * (1 Guild = 1 Team)</label>
+          <input type="text" id="g-name" placeholder="Exact Guild Name">
+        </div>
+        <div class="input-group">
+          <label>Captain / IGL WhatsApp Number *</label>
+          <input type="tel" id="c-phone" placeholder="10-digit WhatsApp number">
+          <div class="warning-banner" style="margin-top:4px;">
+            ⚠️ <strong>चेतावनी:</strong> रूम ID/Password सिर्फ़ इसी WhatsApp नंबर पर आएगा। रजिस्ट्रेशन के बाद नंबर नहीं बदलेगा।
+          </div>
+        </div>
+
+        <label style="font-size:12px; color:#ff1e27; font-weight:bold; display:block; margin:12px 0 6px;">
+          ROSTER: 6 PLAYERS (IN-GAME NAMES ONLY)
+        </label>
+        <div class="roster-grid">
+          <div class="input-group"><input type="text" id="p1" placeholder="Player 1 (IGL IGN)"></div>
+          <div class="input-group"><input type="text" id="p2" placeholder="Player 2 IGN"></div>
+          <div class="input-group"><input type="text" id="p3" placeholder="Player 3 IGN"></div>
+          <div class="input-group"><input type="text" id="p4" placeholder="Player 4 IGN"></div>
+          <div class="input-group"><input type="text" id="p5" placeholder="Player 5 IGN"></div>
+          <div class="input-group"><input type="text" id="p6" placeholder="Player 6 IGN"></div>
+        </div>
+        <div class="warning-banner">
+          ⚠️ <strong>ROSTER LOCK:</strong> सिर्फ़ यही 6 दर्ज प्लेयर खेल सकते हैं। कोई बाहरी प्लेयर रूम में नहीं आ सकेगा।
+        </div>
+
+        <button class="btn-register" onclick="submitRegistration()">CONFIRM & SUBMIT SQUAD</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>HOSTED BY LOS FREAKS</p>
+    <span class="admin-link" onclick="openAdmin()">Admin Portal (Export PDF)</span>
+  </footer>
+
+  <script>
+    const introTimer = setTimeout(finishIntro, 5000);
+    function finishIntro() {
+      clearTimeout(introTimer);
+      const intro = document.getElementById('intro-screen');
+      intro.style.opacity = '0';
+      setTimeout(() => { intro.style.display = 'none'; }, 800);
+    }
+
+    function toggleDrawer() {
+      document.getElementById('drawer').classList.toggle('open');
+    }
+
+    function openRegistration() {
+      document.getElementById('reg-modal').style.display = 'flex';
+      document.getElementById('step-1').style.display = 'block';
+      document.getElementById('step-2').style.display = 'none';
+      document.getElementById('step-title').innerText = "STEP 1: OFFICIAL RULEBOOK";
+    }
+    function closeRegistration() {
+      document.getElementById('reg-modal').style.display = 'none';
+    }
+    function goToStep2() {
+      if(!document.getElementById('rule-agree').checked) {
+        alert("कृपया आगे बढ़ने से पहले नियमों को स्वीकार करें!");
+        return;
+      }
+      document.getElementById('step-1').style.display = 'none';
+      document.getElementById('step-2').style.display = 'block';
+      document.getElementById('step-title').innerText = "STEP 2: SQUAD DETAILS";
+    }
+
+    function downloadRulesDoc() {
+      const text = "LOS FREAKS TROPHY - LFT MAC SEASON 2 (GVG) RULES\n\n1 Guild = Only 1 Team\nPrize Pool: ₹3,000 (1st: 1500, 2nd: 1000, 3rd: 400, MVP: 100)\n\n15 MATCH RULES:\n- M1887, UMP, Woodpecker, M1014, Deagle\n- Skills: Alok, Caroline, Kelly, Maxim\n- Match Recording Compulsory\n- Phone Check within 15 min\n- Hosted by LOS FREAKS";
+      const blob = new Blob([text], {type: "text/plain"});
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "LFT_MAC_Season2_Rulebook.txt";
+      a.click();
+    }
+
+    let squads = JSON.parse(localStorage.getItem('lft_squads') || '[]');
+    updateSlotUI();
+
+    function submitRegistration() {
+      const tName = document.getElementById('t-name').value.trim();
+      const gName = document.getElementById('g-name').value.trim();
+      const phone = document.getElementById('c-phone').value.trim();
+      const p1 = document.getElementById('p1').value.trim();
+      const p2 = document.getElementById('p2').value.trim();
+      const p3 = document.getElementById('p3').value.trim();
+      const p4 = document.getElementById('p4').value.trim();
+      const p5 = document.getElementById('p5').value.trim();
+      const p6 = document.getElementById('p6').value.trim();
+
+      if(!tName || !gName || !phone || !p1 || !p2 || !p3 || !p4 || !p5 || !p6) {
+        alert("कृपया सभी 6 खिलाड़ियों के नाम और टीम की पूरी जानकारी भरें!");
+        return;
+      }
+
+      squads.push({ slot: squads.length + 1, tName, gName, phone, p1, p2, p3, p4, p5, p6 });
+      localStorage.setItem('lft_squads', JSON.stringify(squads));
+      updateSlotUI();
+      closeRegistration();
+      alert("✅ रजिस्ट्रेशन सफल हुआ! आपका स्लॉट सुरक्षित कर लिया गया है।");
+    }
+
+    function updateSlotUI() {
+      const count = squads.length;
+      document.getElementById('slot-counter').innerText = `${count} / 64 SQUADS`;
+      document.getElementById('progress-bar').style.width = `${(count / 64) * 100}%`;
+    }
+
+    function openAdmin() {
+      const pass = prompt("Enter Admin Passcode:");
+      if(pass === "LFT2026") {
+        if(squads.length === 0) {
+          alert("अभी कोई टीम रजिस्टर नहीं हुई है। पहले फ़ॉर्म भरके टेस्ट करें!");
+          return;
+        }
+        let printWindow = window.open('', '', 'width=800,height=600');
+        let html = '<h2>LOS FREAKS TROPHY — LFT MAC SEASON 2 (GVG)</h2>';
+        html += '<p>Official Registered Roster</p><table border="1" cellpadding="8" style="border-collapse:collapse;width:100%;font-size:12px;">';
+        html += '<tr><th>Slot</th><th>Team</th><th>Guild</th><th>WhatsApp</th><th>6 Players (IGN)</th></tr>';
+        squads.forEach(s => {
+          html += `<tr><td>${s.slot}</td><td>${s.tName}</td><td>${s.gName}</td><td>${s.phone}</td><td>${s.p1}, ${s.p2}, ${s.p3}, ${s.p4}, ${s.p5}, ${s.p6}</td></tr>`;
+        });
+        html += '</table>';
+        printWindow.document.write(html);
+        printWindow.document.close();
+        printWindow.print();
+      } else {
+        alert("गलत पासकोड!");
+      }
+    }
+  </script>
+</body>
+</html>
